@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadis Untuk Hati Yang Sedang Kacau</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --hover-color: #1a252f;
+            --bg-color: #f4f6f8;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh;
+            overflow: hidden; 
+        }
+        header {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        .brand {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 15px 0;
+            display: none; 
+        }
+        nav ul { 
+            list-style-type: none; 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+        }
+        nav ul li { position: relative; }
+        nav ul li a { 
+            display: block; 
+            color: white; 
+            text-align: center; 
+            padding: 16px 20px; 
+            text-decoration: none; 
+            transition: background 0.3s;
+            font-size: 0.95rem;
+        }
+        nav ul li a:hover { background-color: var(--hover-color); }
+        
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background-color: white; 
+            min-width: 280px; 
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+            z-index: 20; 
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+        }
+        .dropdown-content a { 
+            color: #333; 
+            padding: 14px 16px; 
+            text-decoration: none; 
+            display: block; 
+            text-align: left; 
+            border-bottom: 1px solid #eee;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f1f1f1; color: var(--primary-color); }
+        .dropdown:hover .dropdown-content { display: block; }
+        
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            background: none;
+            border: none;
+        }
+
+        iframe { 
+            flex-grow: 1; 
+            border: none; 
+            width: 100%; 
+            background-color: var(--bg-color);
+        }
+
+        /* Khusus Layar HP / Android */
+        @media (max-width: 768px) {
+            .brand { display: block; }
+            .menu-toggle { display: block; }
+            nav { flex-wrap: wrap; padding: 0 10px; }
+            nav ul { 
+                display: none; 
+                flex-direction: column; 
+                width: 100%;
+                background-color: var(--primary-color);
+            }
+            nav ul.show {
+                display: flex;
+            }
+            nav ul li a { text-align: left; padding: 14px 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+            
+            .dropdown-content { 
+                position: static; 
+                box-shadow: none;
+                background-color: #34495e;
+                min-width: 100%;
+                border-radius: 0;
+            }
+            .dropdown:hover .dropdown-content { display: none; } 
+            .dropdown.active .dropdown-content { display: block; } 
+            .dropdown-content a { 
+                color: #ddd; 
+                padding-left: 35px; 
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .dropdown-content a:hover { background-color: #2c3e50; color: white; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="brand">E-Book Hadis</div>
+        <button class="menu-toggle" id="mobile-menu-btn">&#9776;</button>
+        <ul id="nav-menu">
+            <li><a href="cover.html" target="iframe_content" class="nav-link">Cover</a></li>
+            <li><a href="pengantar.html" target="iframe_content" class="nav-link">Kata Pengantar</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-btn">BAB 1 &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="bab1.html" target="iframe_content" class="nav-link">A. Saat Hati Sedang Gelisah, Lelah, dan Tidak Tenang</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-btn">BAB 2 &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="bab2.html" target="iframe_content" class="nav-link">B. Saat Kecewa, Kehilangan, dan Hati yang Sedang Terluka</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-btn">BAB 3 &#9662;</a>
+                <div class="dropdown-content">
+                    <a href="bab3.html" target="iframe_content" class="nav-link">C. Menata Hati, Kembali Pulang, dan Melanjutkan Langkah</a>
+                </div>
+            </li>
+            <li><a href="pustaka.html" target="iframe_content" class="nav-link">Daftar Pustaka</a></li>
+            <li><a href="penulis.html" target="iframe_content" class="nav-link">Tentang Penulis</a></li>
+        </ul>
+    </nav>
+</header>
+
+<iframe src="cover.html" name="iframe_content"></iframe>
+
+<script>
+    // Membuka/Menutup Menu Hamburger di HP
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
+    // Membuka/Menutup Dropdown di HP
+    const dropdowns = document.querySelectorAll('.dropdown-btn');
+    dropdowns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            if(window.innerWidth <= 768) {
+                e.preventDefault(); 
+                const parent = btn.parentElement;
+                parent.classList.toggle('active');
+            }
+        });
+    });
+
+    // Otomatis menutup menu setelah link diklik (agar nyaman saat membaca di HP)
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if(window.innerWidth <= 768) {
+                navMenu.classList.remove('show');
+            }
+        });
+    });
+</script>
+</body>
+</html>
